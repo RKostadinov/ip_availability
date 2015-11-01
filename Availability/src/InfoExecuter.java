@@ -12,19 +12,19 @@ public class InfoExecuter extends BaseExecuter {
 	@Override
 	public void execute() {
 		boolean currentlyLogged = false;
-		int logincount = 0; 
+		Integer logincount = 0; 
 		
 		if (!currentlyLoggedUsers.contains(command[0])) {
 			System.out.println("error:notlogged");
 		}else{
-			System.out.println("ok:");
+			System.out.print("ok:");
 			if(currentlyLoggedUsers.contains(command[2])){
 				currentlyLogged = true;
 			}
-			if (usersToLoginCount.get(command[2]) != null) {
-				
-			}
+			logincount = usersToLoginCount.get(command[2]);
+			logincount = logincount != null ? logincount : 0 ;		
 			
+			System.out.printf("%s:%s:%d\n",command[2], Boolean.toString(currentlyLogged), logincount );
 		}
 
 	}
