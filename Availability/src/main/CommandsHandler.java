@@ -1,7 +1,10 @@
+package main;
+
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import executers.*;
 
 public class CommandsHandler {
 	static List<String> currentlyLoggedUsers = new LinkedList<String>();
@@ -33,10 +36,15 @@ public class CommandsHandler {
 			baseExecuter = new ListExecuter(split, currentlyLoggedUsers,
 					usersToLoginCount);
 			break;
+		case "listabsent":
+			baseExecuter = new ListAbsentExecuter(split, currentlyLoggedUsers,
+					usersToLoginCount);
+			break;
 		case "shutdown":
 			baseExecuter = new ShutDownExecuter(split, currentlyLoggedUsers,
 					usersToLoginCount);
 			break;
+			
 		default:
 			System.out.println("error:unknowncommand");
 			break;

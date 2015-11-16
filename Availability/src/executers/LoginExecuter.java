@@ -1,3 +1,4 @@
+package executers;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +20,6 @@ public class LoginExecuter extends BaseExecuter {
 			if (currentlyLoggedUsers.contains(command[0])) {
 				Integer temp = usersToLoginCount.get(command[0]);
 				temp++;
-				System.out.println(temp);
 				usersToLoginCount.put(command[0], temp);
 			} else {
 				usersToLoginCount.put(command[0], 1);
