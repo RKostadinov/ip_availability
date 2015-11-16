@@ -73,5 +73,6 @@ public class Server {
 
 	public void onClientStopped(ClientHandler clientHandler) {
 		clients.remove(clientHandler);
+		
 	}
 }

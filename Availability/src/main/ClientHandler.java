@@ -27,7 +27,7 @@ public class ClientHandler implements Runnable {
 				final String line = scanner.nextLine();
 
 				
-				CommandsHandler.execute(line,server,out);
+				CommandsHandler.execute(line,server,out, socket);
 				out.println("Vuvedi Komanda: ");
 				
 			}

@@ -2,12 +2,13 @@ package main;
 
 
 import java.io.PrintStream;
+import java.net.Socket;
 
 import executers.*;
 
 public class CommandsHandler {
 	
-	public static void execute(String command, Server server, PrintStream out) {
+	public static void execute(String command, Server server, PrintStream out, Socket socket) {
 		BaseExecuter baseExecuter = null;
 		String[] split = command.split(":");
 
@@ -17,7 +18,7 @@ public class CommandsHandler {
 
 		switch (split[1]) {
 		case "login":
-			baseExecuter = new LoginExecuter(split,out);
+			baseExecuter = new LoginExecuter(split,out, socket);
 			break;
 		case "logout":
 			baseExecuter = new LogoutExecuter(split, out);

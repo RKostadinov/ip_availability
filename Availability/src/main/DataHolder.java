@@ -7,13 +7,13 @@ import java.util.Map;
 
 public class DataHolder {
 	public List<String> currentlyLoggedUsers;
-	public Map<String, UserInfo> usersToLoginCount;
+	public Map<String, User> usersToLoginCount;
 	
 	private static DataHolder instance;
 	
 	private DataHolder() {
 		currentlyLoggedUsers = new LinkedList<String>();
-		usersToLoginCount = new HashMap<String, UserInfo>();
+		usersToLoginCount = new HashMap<String, User>();
 	}
 
 	public static synchronized DataHolder getInstance(){

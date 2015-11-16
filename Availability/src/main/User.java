@@ -1,16 +1,23 @@
 package main;
 
+import java.io.IOException;
 import java.io.PrintStream;
+import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class UserInfo {
+public class User {
+	String user;
+	boolean loggedIn;
 	Integer count = 0;
 	ArrayList<Date> dates;
+	Socket socket;
 	
-	public UserInfo() {
-		super();
+	public User(String user, Socket socket) {
+		this.user = user;
+		this.socket = socket;
+		
 		count = 1;
 		dates = new ArrayList<>();
 		Date date = new Date();
@@ -22,13 +29,14 @@ public class UserInfo {
 		count++;
 		Date date = new Date();
 		dates.add(date);
+		loggedIn = true;
 
 	}
 	
 	public void afterLogout(){
 		Date date = new Date();
 		dates.add(date);
-
+		loggedIn = false;
 		}
 	
 	public void display(PrintStream out){
@@ -38,6 +46,10 @@ public class UserInfo {
 			out.printf("%s:",dateFormat.format(date));
 		}		
 		out.println();
+	}
+
+	public void disconnect() throws IOException {
+		socket.close();
 	}
 	
 	

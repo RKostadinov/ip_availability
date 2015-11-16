@@ -3,7 +3,7 @@ package executers;
 import java.io.PrintStream;
 
 import main.DataHolder;
-import main.UserInfo;
+import main.User;
 
 
 public class InfoExecuter extends BaseExecuter {
@@ -14,22 +14,23 @@ public class InfoExecuter extends BaseExecuter {
 
 	@Override
 	public void execute() {
+		DataHolder dataHolder = DataHolder.getInstance();
 		boolean currentlyLogged = false;
-		UserInfo userInfo; 
+		User user; 
 		
-		if (!currentlyLoggedUsers.contains(command[0])) {
+		if (!dataHolder.currentlyLoggedUsers.contains(command[0])) {
 			out.println("error:notlogged");
 		}else{
 			out.print("ok:");
-			if(currentlyLoggedUsers.contains(command[2])){
+			if(dataHolder.currentlyLoggedUsers.contains(command[2])){
 				currentlyLogged = true;
 			}
-			userInfo = usersToLoginCount.get(command[2]);
+			user = dataHolder.usersToLoginCount.get(command[2]);
 			
 			out.printf("%s:%s:",command[2], Boolean.toString(currentlyLogged));
 			
-			if(userInfo != null){
-				userInfo.display(out);
+			if(user != null){
+				user.display(out);
 			}else{
 				out.println("0");
 			}

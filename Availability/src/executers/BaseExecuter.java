@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 import main.DataHolder;
-import main.UserInfo;
+import main.User;
 
 
 public abstract class BaseExecuter {
 	String[] command;
 	List<String> currentlyLoggedUsers;
-	Map<String, UserInfo> usersToLoginCount;
+	Map<String, User> usersToLoginCount;
 	PrintStream out;
 
 	public BaseExecuter(String[] command, PrintStream out) {
