@@ -1,15 +1,12 @@
 package executers;
-import java.util.List;
-import java.util.Map;
 
-import main.MainClass;
+import main.*;
+
 
 public class ShutDownExecuter extends BaseExecuter {
 
-	public ShutDownExecuter(String[] command,
-			List<String> currentlyLoggedUsers,
-			Map<String, Integer> usersToLoginCount) {
-		super(command, currentlyLoggedUsers, usersToLoginCount);
+	public ShutDownExecuter(String[] command, DataHolder dataHolder) {
+		super(command, dataHolder);
 	}
 
 	@Override

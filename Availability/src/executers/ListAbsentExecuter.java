@@ -1,16 +1,13 @@
 package executers;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+
+import main.DataHolder;
 
 
 public class ListAbsentExecuter extends BaseExecuter {
 
-	public ListAbsentExecuter(String[] command,
-			List<String> currentlyLoggedUsers,
-			Map<String, Integer> usersToLoginCount) {
-		super(command, currentlyLoggedUsers, usersToLoginCount);
-		// TODO Auto-generated constructor stub
+	public ListAbsentExecuter(String[] command, DataHolder dataHolder) {
+		super(command, dataHolder);
 	}
 
 	@Override

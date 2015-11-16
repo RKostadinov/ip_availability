@@ -1,13 +1,12 @@
 package executers;
-import java.util.List;
-import java.util.Map;
+
+import main.DataHolder;
 
 
 public class InfoExecuter extends BaseExecuter {
 
-	public InfoExecuter(String[] command, List<String> currentlyLoggedUsers, Map<String, Integer> usersToLoginCount) {
-		super(command, currentlyLoggedUsers, usersToLoginCount);
-		
+	public InfoExecuter(String[] command, DataHolder dataHolder) {
+		super(command, dataHolder);
 	}
 
 	@Override

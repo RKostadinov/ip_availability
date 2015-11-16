@@ -1,17 +1,12 @@
 package main;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+
 import executers.*;
 
 public class CommandsHandler {
-	static List<String> currentlyLoggedUsers = new LinkedList<String>();
-	static Map<String, Integer> usersToLoginCount = new HashMap<String, Integer>();
 
 	public static void execute(String command) {
-
+		DataHolder dataHolder = new DataHolder();
 		BaseExecuter baseExecuter = null;
 		String[] split = command.split(":");
 
@@ -21,28 +16,22 @@ public class CommandsHandler {
 
 		switch (split[1]) {
 		case "login":
-			baseExecuter = new LoginExecuter(split, currentlyLoggedUsers,
-					usersToLoginCount);
+			baseExecuter = new LoginExecuter(split, dataHolder);
 			break;
 		case "logout":
-			baseExecuter = new LogoutExecuter(split, currentlyLoggedUsers,
-					usersToLoginCount);
+			baseExecuter = new LogoutExecuter(split, dataHolder);
 			break;
 		case "info":
-			baseExecuter = new InfoExecuter(split, currentlyLoggedUsers,
-					usersToLoginCount);
+			baseExecuter = new InfoExecuter(split, dataHolder);
 			break;
 		case "listavailable":
-			baseExecuter = new ListExecuter(split, currentlyLoggedUsers,
-					usersToLoginCount);
+			baseExecuter = new ListExecuter(split, dataHolder);
 			break;
 		case "listabsent":
-			baseExecuter = new ListAbsentExecuter(split, currentlyLoggedUsers,
-					usersToLoginCount);
+			baseExecuter = new ListAbsentExecuter(split, dataHolder);
 			break;
 		case "shutdown":
-			baseExecuter = new ShutDownExecuter(split, currentlyLoggedUsers,
-					usersToLoginCount);
+			baseExecuter = new ShutDownExecuter(split, dataHolder);
 			break;
 			
 		default:
