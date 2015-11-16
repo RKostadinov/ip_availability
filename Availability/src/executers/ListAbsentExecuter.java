@@ -1,4 +1,5 @@
 package executers;
+import java.io.PrintStream;
 import java.util.ArrayList;
 
 import main.DataHolder;
@@ -6,24 +7,24 @@ import main.DataHolder;
 
 public class ListAbsentExecuter extends BaseExecuter {
 
-	public ListAbsentExecuter(String[] command, DataHolder dataHolder) {
-		super(command, dataHolder);
+	public ListAbsentExecuter(String[] command, PrintStream out) {
+		super(command, out);
 	}
 
 	@Override
 	public void execute() {
 		if (!currentlyLoggedUsers.contains(command[0])) {
-			System.out.println("error:notlogged");
+			out.println("error:notlogged");
 		} else {
-			System.out.print("ok");
+			out.print("ok");
 			ArrayList<String> absentUsers = new ArrayList<>(usersToLoginCount.keySet());
 			absentUsers.removeAll(currentlyLoggedUsers);
 			
 			for (String username : absentUsers) {
-				System.out.printf(":%s", username);
+				out.printf(":%s", username);
 			}
 		
-			System.out.println();
+			out.println();
 		}
 
 	}

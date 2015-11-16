@@ -1,21 +1,30 @@
 package executers;
 
+import java.io.IOException;
+import java.io.PrintStream;
+
 import main.*;
 
 
 public class ShutDownExecuter extends BaseExecuter {
-
-	public ShutDownExecuter(String[] command, DataHolder dataHolder) {
-		super(command, dataHolder);
+	Server server;
+	public ShutDownExecuter(String[] command, Server server, PrintStream out) {
+		super(command, out);
+		this.server = server;
 	}
 
 	@Override
 	public void execute() {
 		if (currentlyLoggedUsers.contains(command[0])) {
-			System.out.println("ok");
-			MainClass.run = false;
+			out.println("ok");
+			try {
+				server.stopServer();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
-			System.out.println("error:notlogged");
+			out.println("error:notlogged");
 		}
 
 	}

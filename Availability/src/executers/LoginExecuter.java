@@ -1,12 +1,14 @@
 package executers;
 
+import java.io.PrintStream;
+
 import main.DataHolder;
 import main.UserInfo;
 
 public class LoginExecuter extends BaseExecuter {
 
-	public LoginExecuter(String[] command, DataHolder dataHolder) {
-		super(command, dataHolder);
+	public LoginExecuter(String[] command, PrintStream out) {
+		super(command, out);
 	}
 
 	@Override
@@ -25,7 +27,7 @@ public class LoginExecuter extends BaseExecuter {
 		if (!currentlyLoggedUsers.contains(command[0])) {
 			currentlyLoggedUsers.add(command[0]);
 		}
-		System.out.println("ok");
+		out.println("ok");
 	}
 
 }

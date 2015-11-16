@@ -1,11 +1,13 @@
 package executers;
 
+import java.io.PrintStream;
+
 import main.DataHolder;
 
 public class LogoutExecuter extends BaseExecuter {
 
-	public LogoutExecuter(String[] command, DataHolder dataHolder) {
-		super(command, dataHolder);
+	public LogoutExecuter(String[] command, PrintStream out) {
+		super(command, out);
 	}
 
 	@Override
@@ -13,9 +15,9 @@ public class LogoutExecuter extends BaseExecuter {
 		if (currentlyLoggedUsers.contains(command[0])) {
 			currentlyLoggedUsers.remove(command[0]);
 			usersToLoginCount.get(command[0]).afterLogout();
-			System.out.println("ok");
+			out.println("ok");
 		} else {
-			System.out.println("error:notlogged");
+			out.println("error:notlogged");
 		}
 	}
 }

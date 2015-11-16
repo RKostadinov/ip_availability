@@ -1,41 +1,42 @@
 package main;
 
 
+import java.io.PrintStream;
+
 import executers.*;
 
 public class CommandsHandler {
-	 static DataHolder dataHolder = new DataHolder();
-
-	public static void execute(String command) {
+	
+	public static void execute(String command, Server server, PrintStream out) {
 		BaseExecuter baseExecuter = null;
 		String[] split = command.split(":");
 
 		if (split.length < 2) {
-			System.out.println("error:unknowncommand");
+			out.println("error:unknowncommand");
 		}
 
 		switch (split[1]) {
 		case "login":
-			baseExecuter = new LoginExecuter(split, dataHolder);
+			baseExecuter = new LoginExecuter(split,out);
 			break;
 		case "logout":
-			baseExecuter = new LogoutExecuter(split, dataHolder);
+			baseExecuter = new LogoutExecuter(split, out);
 			break;
 		case "info":
-			baseExecuter = new InfoExecuter(split, dataHolder);
+			baseExecuter = new InfoExecuter(split, out);
 			break;
 		case "listavailable":
-			baseExecuter = new ListExecuter(split, dataHolder);
+			baseExecuter = new ListExecuter(split, out);
 			break;
 		case "listabsent":
-			baseExecuter = new ListAbsentExecuter(split, dataHolder);
+			baseExecuter = new ListAbsentExecuter(split, out);
 			break;
 		case "shutdown":
-			baseExecuter = new ShutDownExecuter(split, dataHolder);
+			baseExecuter = new ShutDownExecuter(split, server, out);
 			break;
 			
 		default:
-			System.out.println("error:unknowncommand");
+			out.println("error:unknowncommand");
 			break;
 		}
 
