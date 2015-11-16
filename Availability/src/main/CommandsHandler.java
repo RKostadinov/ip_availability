@@ -4,9 +4,9 @@ package main;
 import executers.*;
 
 public class CommandsHandler {
+	 static DataHolder dataHolder = new DataHolder();
 
 	public static void execute(String command) {
-		DataHolder dataHolder = new DataHolder();
 		BaseExecuter baseExecuter = null;
 		String[] split = command.split(":");
 

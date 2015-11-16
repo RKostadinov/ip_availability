@@ -7,7 +7,8 @@ import java.util.Map;
 
 public class DataHolder {
 	public List<String> currentlyLoggedUsers = new LinkedList<String>();
-	public Map<String, Integer> usersToLoginCount = new HashMap<String, Integer>();
+	public Map<String, UserInfo> usersToLoginCount = new HashMap<String, UserInfo>();
+	
 	
 
 }

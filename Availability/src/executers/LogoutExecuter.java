@@ -12,6 +12,7 @@ public class LogoutExecuter extends BaseExecuter {
 	public void execute() {
 		if (currentlyLoggedUsers.contains(command[0])) {
 			currentlyLoggedUsers.remove(command[0]);
+			usersToLoginCount.get(command[0]).afterLogout();
 			System.out.println("ok");
 		} else {
 			System.out.println("error:notlogged");

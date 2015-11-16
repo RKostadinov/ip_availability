@@ -1,6 +1,7 @@
 package executers;
 
 import main.DataHolder;
+import main.UserInfo;
 
 
 public class InfoExecuter extends BaseExecuter {
@@ -12,7 +13,7 @@ public class InfoExecuter extends BaseExecuter {
 	@Override
 	public void execute() {
 		boolean currentlyLogged = false;
-		Integer logincount = 0; 
+		UserInfo userInfo; 
 		
 		if (!currentlyLoggedUsers.contains(command[0])) {
 			System.out.println("error:notlogged");
@@ -21,10 +22,10 @@ public class InfoExecuter extends BaseExecuter {
 			if(currentlyLoggedUsers.contains(command[2])){
 				currentlyLogged = true;
 			}
-			logincount = usersToLoginCount.get(command[2]);
-			logincount = logincount != null ? logincount : 0 ;		
+			userInfo = usersToLoginCount.get(command[2]);
 			
-			System.out.printf("%s:%s:%d\n",command[2], Boolean.toString(currentlyLogged), logincount );
+			System.out.printf("%s:%s:",command[2], Boolean.toString(currentlyLogged));
+			userInfo.display();
 		}
 
 	}

@@ -1,6 +1,7 @@
 package executers;
 
 import main.DataHolder;
+import main.UserInfo;
 
 public class LoginExecuter extends BaseExecuter {
 
@@ -10,19 +11,19 @@ public class LoginExecuter extends BaseExecuter {
 
 	@Override
 	public void execute() {
+
+//		first login
+		if (usersToLoginCount.get(command[0]) == null) {
+			usersToLoginCount.put(command[0], new UserInfo());
+		} else {
+			if (!currentlyLoggedUsers.contains(command[0])) {
+				usersToLoginCount.get(command[0]).afterLogin();
+			}else{
+//				Already logged
+			}	
+		}
 		if (!currentlyLoggedUsers.contains(command[0])) {
 			currentlyLoggedUsers.add(command[0]);
-		}
-		if (usersToLoginCount.get(command[0]) == null) {
-			usersToLoginCount.put(command[0], 1);
-		} else {
-			if (currentlyLoggedUsers.contains(command[0])) {
-				Integer temp = usersToLoginCount.get(command[0]);
-				temp++;
-				usersToLoginCount.put(command[0], temp);
-			} else {
-				usersToLoginCount.put(command[0], 1);
-			}
 		}
 		System.out.println("ok");
 	}
