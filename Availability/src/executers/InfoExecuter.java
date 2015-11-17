@@ -2,14 +2,16 @@ package executers;
 
 import java.io.PrintStream;
 
+import user.User;
+import main.ClientHandler;
 import main.DataHolder;
-import main.User;
 
 
 public class InfoExecuter extends BaseExecuter {
-
-	public InfoExecuter(String[] command, PrintStream out) {
+	ClientHandler clientHandler;
+	public InfoExecuter(String[] command, PrintStream out, ClientHandler clientHandler) {
 		super(command, out);
+		this.clientHandler = clientHandler;
 	}
 
 	@Override
@@ -18,7 +20,7 @@ public class InfoExecuter extends BaseExecuter {
 		boolean currentlyLogged = false;
 		User user; 
 		
-		if (!dataHolder.currentlyLoggedUsers.contains(command[0])) {
+		if (!dataHolder.currentlyLoggedUsers.contains(command[0]) || !clientHandler.isLogged()) {
 			out.println("error:notlogged");
 		}else{
 			out.print("ok:");

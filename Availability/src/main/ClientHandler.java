@@ -5,10 +5,21 @@ import java.io.PrintStream;
 import java.net.Socket;
 import java.util.Scanner;
 
+import user.User;
+
 public class ClientHandler implements Runnable {
 	private final Socket socket;
-
 	private final Server server;
+	public boolean isLogged;
+	public String username;
+
+	public boolean isLogged() {
+		return isLogged;
+	}
+
+	public void setLogged(boolean isLogged) {
+		this.isLogged = isLogged;
+	}
 
 	public ClientHandler(Server server, Socket socket) {
 		this.socket = socket;
@@ -27,7 +38,7 @@ public class ClientHandler implements Runnable {
 				final String line = scanner.nextLine();
 
 				
-				CommandsHandler.execute(line,server,out, socket);
+				CommandsHandler.execute(line,server,out, this);
 				out.println("Vuvedi Komanda: ");
 				
 			}
@@ -44,5 +55,10 @@ public class ClientHandler implements Runnable {
 	public void stopClient() throws IOException {
 		socket.close();
 		// TODO add variable closed
+	}
+
+	public Socket getSocket() {
+		// TODO Auto-generated method stub
+		return socket;
 	}
 }

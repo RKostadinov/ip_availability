@@ -1,16 +1,16 @@
 package main;
 
-
 import java.io.PrintStream;
-import java.net.Socket;
-
 import executers.*;
 
 public class CommandsHandler {
 	
-	public static void execute(String command, Server server, PrintStream out, Socket socket) {
+	public static void execute(String command, Server server, PrintStream out, ClientHandler clientHandler) {
 		BaseExecuter baseExecuter = null;
+		if(clientHandler.isLogged())
+			command = clientHandler.username + ":" + command;
 		String[] split = command.split(":");
+		
 
 		if (split.length < 2) {
 			out.println("error:unknowncommand");
@@ -18,13 +18,13 @@ public class CommandsHandler {
 
 		switch (split[1]) {
 		case "login":
-			baseExecuter = new LoginExecuter(split,out, socket);
+			baseExecuter = new LoginExecuter(split,out, clientHandler);
 			break;
 		case "logout":
-			baseExecuter = new LogoutExecuter(split, out);
+			baseExecuter = new LogoutExecuter(split, out,clientHandler);
 			break;
 		case "info":
-			baseExecuter = new InfoExecuter(split, out);
+			baseExecuter = new InfoExecuter(split, out, clientHandler);
 			break;
 		case "listavailable":
 			baseExecuter = new ListExecuter(split, out);

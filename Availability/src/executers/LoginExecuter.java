@@ -2,15 +2,14 @@ package executers;
 
 import java.io.IOException;
 import java.io.PrintStream;
-import java.net.Socket;
-
-import main.User;
+import main.ClientHandler;
+import user.User;
 
 public class LoginExecuter extends BaseExecuter {
-	Socket socket;
-	public LoginExecuter(String[] command, PrintStream out, Socket socket) {
+	ClientHandler clientHandler;
+	public LoginExecuter(String[] command, PrintStream out, ClientHandler clientHandler) {
 		super(command, out);
-		this.socket = socket;
+		this.clientHandler = clientHandler;
 	}
 
 	@Override
@@ -18,7 +17,7 @@ public class LoginExecuter extends BaseExecuter {
 
 //		first login
 		if (usersToLoginCount.get(command[0]) == null) {
-			usersToLoginCount.put(command[0], new User(command[0], socket));
+			usersToLoginCount.put(command[0], new User(command[0], clientHandler.getSocket()));
 		} else {
 			if (!currentlyLoggedUsers.contains(command[0])) {
 				usersToLoginCount.get(command[0]).afterLogin();
@@ -38,6 +37,8 @@ public class LoginExecuter extends BaseExecuter {
 		if (!currentlyLoggedUsers.contains(command[0])) {
 			currentlyLoggedUsers.add(command[0]);
 		}
+		clientHandler.setLogged(true);
+		clientHandler.username = command[0];
 		out.println("ok");
 	}
 
