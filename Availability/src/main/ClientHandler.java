@@ -33,13 +33,13 @@ public class ClientHandler implements Runnable {
 				new PrintStream(socket.getOutputStream());
 			final Scanner scanner =
 				new Scanner(socket.getInputStream());
-			out.println("Vuvedi Komanda: ");
+			out.println("Въведи команда: ");
 			while (scanner.hasNextLine()) {
 				final String line = scanner.nextLine();
 
 				
 				CommandsHandler.execute(line,server,out, this);
-				out.println("Vuvedi Komanda: ");
+				out.println("Въведи команда: ");
 				
 			}
 			scanner.close();
